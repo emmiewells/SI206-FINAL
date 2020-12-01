@@ -28,6 +28,8 @@ def main():
             print("3. Gender cases table")
             print("4. Gender death table")
             print("5. Gender total table")
+            print("6. USA Gender table")
+            print("7. USA State Gender table")
             print("0. Quit program")
 
             table = int(input())
@@ -47,6 +49,10 @@ def main():
                 database.save_countries_gender_deaths()
             elif table == 5:
                 database.save_countries_gender_total()
+            elif table == 6:
+                database.save_usa_gender_data()
+            elif table == 7:
+                database.save_usa_state_gender_data()
         elif choice == 3:
             print("What table would you like to delete rows from?")
             table = input()
