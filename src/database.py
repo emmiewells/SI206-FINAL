@@ -168,7 +168,7 @@ def save_countries_gender_cases():
                 query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total']))
-        if count == 75:
+        if count == 65:
             for v in data[75:100]:
                 try:
                     country_id = ref[v['country']]
@@ -177,7 +177,7 @@ def save_countries_gender_cases():
                 query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total']))
-        if count == 100:
+        if count == 77:
             for v in data[100:125]:
                 try:
                     country_id = ref[v['country']]
@@ -186,7 +186,7 @@ def save_countries_gender_cases():
                 query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total']))
-        if count == 125:
+        if count == 95:
             for v in data[125:150]:
                 try:
                     country_id = ref[v['country']]
@@ -246,7 +246,7 @@ def save_countries_gender_deaths():
                 query = '''INSERT INTO CountriesGenderDeaths(Country, Date, country_id, MaleDeaths, FemaleDeaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['deaths_male'], v['deaths_female'], v['deaths_total']))
-        elif count == 75:
+        elif count == 65:
             for v in data[75:100]:
                 try:
                     country_id = ref[v['country']]
@@ -255,7 +255,7 @@ def save_countries_gender_deaths():
                 query = '''INSERT INTO CountriesGenderDeaths(Country, Date, country_id, MaleDeaths, FemaleDeaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['deaths_male'], v['deaths_female'], v['deaths_total']))
-        elif count == 100:
+        elif count == 77:
             for v in data[100:125]:
                 try:
                     country_id = ref[v['country']]
@@ -264,7 +264,7 @@ def save_countries_gender_deaths():
                 query = '''INSERT INTO CountriesGenderDeaths(Country, Date, country_id, MaleDeaths, FemaleDeaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['deaths_male'], v['deaths_female'], v['deaths_total']))
-        elif count == 125:
+        elif count == 95:
             for v in data[125:150]:
                 try:
                     country_id = ref[v['country']]
@@ -273,8 +273,8 @@ def save_countries_gender_deaths():
                 query = '''INSERT INTO CountriesGenderDeaths(Country, Date, country_id, MaleDeaths, FemaleDeaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['deaths_male'], v['deaths_female'], v['deaths_total']))
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
 
 def delete_rows(table, rows):
