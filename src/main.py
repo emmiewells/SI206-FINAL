@@ -22,25 +22,12 @@ def main():
             database.create_databases()
             print()
         elif choice == 2:
-            while True:
-                tracker = 0
-                if tracker == 0:
-                    database.save_global_data()
-                    tracker += 1
-                elif tracker > 1:
-                    database.save_country_data()
-                    tracker += 1
-                if tracker > 4:
-                    database.save_countries_gender_cases()
-                    database.save_countries_gender_deaths()
-                if tracker > 6:
-                    break
-        elif choice == 6:
             print("Which table to update?")
             print("1. Global table")
             print("2. Country table")
             print("3. Gender cases table")
             print("4. Gender death table")
+            print("5. Gender total table")
             print("0. Quit program")
 
             table = int(input())
@@ -58,6 +45,8 @@ def main():
                 database.save_countries_gender_cases()
             elif table == 4:
                 database.save_countries_gender_deaths()
+            elif table == 5:
+                database.save_countries_gender_total()
         elif choice == 3:
             print("What table would you like to delete rows from?")
             table = input()
