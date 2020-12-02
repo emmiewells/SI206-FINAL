@@ -28,6 +28,9 @@ def create_databases():
     query = '''CREATE TABLE IF NOT EXISTS USA(id INTEGER PRIMARY KEY, date TEXT, Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);'''
     c.execute(query)
 
+    query = "CREATE TABLE IF NOT EXISTS States(id INTEGER PRIMARY KEY, date TEXT, State TEXT, date_id REFERENCES USA(id), Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);"
+    c.execute(query)
+
     query = '''CREATE TABLE IF NOT EXISTS USAGender (id INTEGER PRIMARY KEY, Date TEXT, State TEXT, Sex TEXT, AgeGroup TEXT, COVID19Deaths INTEGER, PneumoniaDeaths INTEGER, InfluenzaDeaths INTEGER, PneumoniaAndCOVID19Deaths INTEGER, PneumoniaInfluenzaORCOVID19Deaths INTEGER, TotalDeaths INTEGER);'''
     c.execute(query)
 
@@ -50,6 +53,136 @@ def save_usa_data():
     query = "INSERT INTO USA(date, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?);"
     c.execute(query, (date, data['positive'],
                       data['negative'], data['death'], data['recovered']))
+
+    conn.commit()
+    conn.close()
+
+
+def save_usa_state_data():
+    url = 'https://api.covidtracking.com/v1/states/current.json'
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+
+    data = retrieve_data(url)
+    date = datetime.today().strftime('%Y-%m-%d')
+
+    data = sorted(data, key=lambda x: x['positive'], reverse=True)
+
+    query = "SELECT date, id FROM USA"
+    c.execute(query)
+    ref = c.fetchall()
+    ref_dict = dict(ref)
+
+    query = "SELECT * FROM States;"
+    c.execute(query)
+
+    count = len(c.fetchall())
+
+    us_state_abbrev = {
+        'Alabama': 'AL',
+        'Alaska': 'AK',
+        'American Samoa': 'AS',
+        'Arizona': 'AZ',
+        'Arkansas': 'AR',
+        'California': 'CA',
+        'Colorado': 'CO',
+        'Connecticut': 'CT',
+        'Delaware': 'DE',
+        'District of Columbia': 'DC',
+        'Florida': 'FL',
+        'Georgia': 'GA',
+        'Guam': 'GU',
+        'Hawaii': 'HI',
+        'Idaho': 'ID',
+        'Illinois': 'IL',
+        'Indiana': 'IN',
+        'Iowa': 'IA',
+        'Kansas': 'KS',
+        'Kentucky': 'KY',
+        'Louisiana': 'LA',
+        'Maine': 'ME',
+        'Maryland': 'MD',
+        'Massachusetts': 'MA',
+        'Michigan': 'MI',
+        'Minnesota': 'MN',
+        'Mississippi': 'MS',
+        'Missouri': 'MO',
+        'Montana': 'MT',
+        'Nebraska': 'NE',
+        'Nevada': 'NV',
+        'New Hampshire': 'NH',
+        'New Jersey': 'NJ',
+        'New Mexico': 'NM',
+        'New York': 'NY',
+        'North Carolina': 'NC',
+        'North Dakota': 'ND',
+        'Northern Mariana Islands': 'MP',
+        'Ohio': 'OH',
+        'Oklahoma': 'OK',
+        'Oregon': 'OR',
+        'Pennsylvania': 'PA',
+        'Puerto Rico': 'PR',
+        'Rhode Island': 'RI',
+        'South Carolina': 'SC',
+        'South Dakota': 'SD',
+        'Tennessee': 'TN',
+        'Texas': 'TX',
+        'Utah': 'UT',
+        'Vermont': 'VT',
+        'Virgin Islands': 'VI',
+        'Virginia': 'VA',
+        'Washington': 'WA',
+        'West Virginia': 'WV',
+        'Wisconsin': 'WI',
+        'Wyoming': 'WY'
+    }
+
+    us_states = {y: x for x, y in us_state_abbrev.items()}
+
+    if count < 56:
+        if count == 0:
+            for i in data[:25]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
+        elif count == 25:
+            for i in data[25:50]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
+        elif count == 50:
+            for i in data[50:]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
+    elif count < 112:
+        if count == 56:
+            for i in data[:25]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
+        if count == 81:
+            for i in data[25:50]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
+        if count == 106:
+            for i in data[50:]:
+                date_id = ref_dict[date]
+                state = us_states[i['state']]
+                query = "INSERT INTO States(date, state, date_id, Confirmed, Negative, Deaths, Recovered) VALUES (?, ?, ?, ?, ?, ?, ?);"
+                c.execute(
+                    query, (date, state, date_id, i['positive'], i['negative'], i['death'], i['recovered']))
 
     conn.commit()
     conn.close()
