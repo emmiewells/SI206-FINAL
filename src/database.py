@@ -34,6 +34,12 @@ def create_databases():
     query = '''CREATE TABLE IF NOT EXISTS USAGender (id INTEGER PRIMARY KEY, Date TEXT, State TEXT, Sex TEXT, AgeGroup TEXT, COVID19Deaths INTEGER, PneumoniaDeaths INTEGER, InfluenzaDeaths INTEGER, PneumoniaAndCOVID19Deaths INTEGER, PneumoniaInfluenzaORCOVID19Deaths INTEGER, TotalDeaths INTEGER);'''
     c.execute(query)
 
+    query = '''CREATE TABLE IF NOT EXISTS USAStateGender(id INTEGER PRIMARY KEY, Date TEXT, State TEXT, state_id REFERENCES States(id), date_id REFERENCES USAGender(Date), Sex TEXT, AgeGroup TEXT, COVID19Deaths INTEGER, PneumoniaDeaths INTEGER, InfluenzaDeaths INTEGER, PneumoniaAndCOVID19Deaths INTEGER, PneumoniaInfluenzaORCOVID19Deaths INTEGER, TotalDeaths INTEGER);'''
+    c.execute(query)
+
+    query = '''CREATE TABLE IF NOT EXISTS CountriesAgeSex(id INTEGER PRIMARY KEY, Date TEXT, Country TEXT, country_id REFERENCES CountriesGender(id), AgeGroup TEXT, FemaleDeaths INTEGER, MaleDeaths INTEGER);'''
+    c.execute(query)
+
     print("Databases created!")
 
 
@@ -226,6 +232,7 @@ def save_usa_state_gender_data():
     c = conn.cursor()
 
     state_data = []
+    date = datetime.today().strftime('%Y-%m-%d')
 
     state_names = ["Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "District of Columbia", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi",
                    "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming"]
@@ -234,8 +241,125 @@ def save_usa_state_gender_data():
         data = retrieve_data(
             f'https://data.cdc.gov/resource/9bhg-hcku.json?state={state}&age_group_new=All%20Ages')
         state_data.append(data)
-    for state in state_data:
-        print(len(state))
+
+    query = '''SELECT * FROM USAStateGender;'''
+    c.execute(query)
+    count = len(c.fetchall())
+
+    query = '''SELECT State, id FROM States'''
+    c.execute(query)
+    ref = c.fetchall()
+    state_ref = dict(ref)
+
+    query = '''SELECT Date, id FROM USAGender'''
+    c.execute(query)
+    ref = c.fetchall()
+    date_ref = dict(ref)
+
+    states = sum(state_data, [])
+    if count < 200:
+        if count == 0:
+            for state in states[:25]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                if 'influenza_deaths' not in state:
+                    state['influenza_deaths'] = ''
+                if 'total_deaths' not in state:
+                    state['total_deaths'] = ''
+                if 'pneumonia_deaths' not in state:
+                    state['pneumonia_deaths'] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'], state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 25:
+            for state in states[25:50]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                if 'influenza_deaths' not in state:
+                    state['influenza_deaths'] = ''
+                if 'total_deaths' not in state:
+                    state['total_deaths'] = ''
+                if 'pneumonia_deaths' not in state:
+                    state['pneumonia_deaths'] = ''
+                if 'pneumonia_influenza_or_covid' not in state:
+                    state['pneumonia_influenza_or_covid'] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 50:
+            for state in states[50:75]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 75:
+            for state in states[75:100]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 100:
+            for state in states[100:125]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths', 'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 125:
+            for state in states[125:150]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 150:
+            for state in states[150:175]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+        if count == 175:
+            for state in states[175:]:
+                state_id = state_ref[state['state']]
+                date_id = date_ref[date]
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                for param in params:
+                    if param not in state:
+                        state[param] = ''
+                query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+    
+    conn.commit()
+    conn.close()
+                
 
 
 def save_global_data():

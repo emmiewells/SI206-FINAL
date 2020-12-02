@@ -26,6 +26,7 @@ def main():
             print("2. Country table")
             print("3. Gender Countries table")
             print("4. USA State Gender table")
+            print("7. To test")
             print("0. Quit program")
 
             table = int(input())
