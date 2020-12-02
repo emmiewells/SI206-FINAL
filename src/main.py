@@ -45,8 +45,9 @@ def main():
                 database.save_countries_gender()
                 database.save_usa_gender_data()
                 database.save_usa_state_data()
-            elif table == 7:
                 database.save_usa_state_gender_data()
+            elif table == 7:
+                database.save_countries_age_gender()
         elif choice == 3:
             print("What table would you like to delete rows from?")
             table = input()
