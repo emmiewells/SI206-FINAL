@@ -87,6 +87,7 @@ def save_usa_gender_data():
     conn.close()
 
 
+# work in progress
 def save_usa_state_gender_data():
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -207,7 +208,7 @@ def save_countries_gender():
     ref = c.fetchall()
     ref = dict(ref)
 
-    query = '''SELECT * FROM CountriesGenderCases;'''
+    query = '''SELECT * FROM CountriesGender;'''
     c.execute(query)
     count = len(c.fetchall())
 
@@ -220,7 +221,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
         if count == 22:
@@ -229,7 +230,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
         if count == 45:
@@ -238,7 +239,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
         if count == 65:
@@ -247,7 +248,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
         if count == 77:
@@ -256,7 +257,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
         if count == 95:
@@ -265,7 +266,7 @@ def save_countries_gender():
                     country_id = ref[v['country']]
                 except KeyError as e:
                     continue
-                query = '''INSERT INTO CountriesGenderCases(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?);'''
+                query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (v['country'], v['date'], country_id,
                                   v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
     conn.commit()
@@ -295,13 +296,13 @@ def start_over():
     query = "DROP TABLE Global;"
     c.execute(query)
 
-    query = "DROP TABLE CountriesGenderCases;"
+    query = "DROP TABLE USAGender"
     c.execute(query)
 
-    query = "DROP TABLE CountriesGenderDeaths;"
+    query = "DROP TABLE USA;"
     c.execute(query)
 
-    query = "DROP TABLE CountriesGenderPopulation;"
+    query = "DROP TABLE CountriesGender;"
     c.execute(query)
 
     conn.commit()

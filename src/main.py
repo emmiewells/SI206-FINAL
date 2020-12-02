@@ -9,7 +9,6 @@ def main():
         print("2. Update database")
         print("3. Delete rows")
         print("4. Start over")
-        print("6. To debug interface")
         print("0. Quit program")
 
         choice = int(input())
@@ -25,11 +24,8 @@ def main():
             print("Which table to update?")
             print("1. Global table")
             print("2. Country table")
-            print("3. Gender cases table")
-            print("4. Gender death table")
-            print("5. Gender total table")
-            print("6. USA Gender table")
-            print("7. USA State Gender table")
+            print("3. Gender Countries table")
+            print("4. USA State Gender table")
             print("0. Quit program")
 
             table = int(input())
@@ -44,12 +40,7 @@ def main():
                 print("Please do this at *least* 4 times and at max 6 times")
                 database.save_country_data()
             elif table == 3:
-                database.save_countries_gender_cases()
-            elif table == 4:
-                database.save_countries_gender_deaths()
-            elif table == 5:
-                database.save_countries_gender_total()
-            elif table == 6:
+                database.save_countries_gender()
                 database.save_usa_gender_data()
             elif table == 7:
                 database.save_usa_state_gender_data()

@@ -4,8 +4,8 @@ import json
 
 
 def main():
-  
-    
-#create a bar chart displaying the comparision of male and females cases in the us 
 
-# create a pie chart showing which pre-exisitng health conditions affected the amount of deaths 
+    # create a bar chart displaying the comparision of male and females cases in the us
+
+    # create a pie chart showing which pre-existing health conditions affected the amount of deaths
+    pass
