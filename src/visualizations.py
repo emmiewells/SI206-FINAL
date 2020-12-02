@@ -9,3 +9,7 @@ def main():
 
     # create a pie chart showing which pre-existing health conditions affected the amount of deaths
     pass
+
+
+if __name__ == '__main__':
+    main()
