@@ -5,10 +5,13 @@ from datetime import datetime
 
 
 def create_databases():
-    print("Creating databases...")
+    print("Connecting to database...")
 
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
+    print("Database connected!")
+
+    print("Creating tables...")
 
     query = '''CREATE TABLE IF NOT EXISTS Global(id INTEGER PRIMARY KEY, Date TEXT, TotalConfirmed INTEGER, TotalDeaths INTEGER, TotalRecovered INTEGER);'''
     c.execute(query)
@@ -18,12 +21,6 @@ def create_databases():
 
     query = '''CREATE TABLE IF NOT EXISTS CountriesGender(id INTEGER PRIMARY KEY, Country TEXT, Date TEXT, country_id REFERENCES Countries(id), MaleCases INTEGER, FemaleCases INTEGER, TotalCases INTEGER, MaleDeaths INTEGER, FemaleDeaths INTEGER, TotalDeaths INTEGER, MalePop INTEGER, FemalePop INTEGER, TotalPop INTEGER);'''
     c.execute(query)
-
-    # query = '''CREATE TABLE IF NOT EXISTS CountriesGenderDeaths(id INTEGER PRIMARY KEY, Country TEXT, Date TEXT, country_id REFERENCES CountriesGenderCases(id), MaleDeaths INTEGER, FemaleDeaths INTEGER, TotalDeaths INTEGER);'''
-    # c.execute(query)
-
-    # query = '''CREATE TABLE IF NOT EXISTS CountriesGenderPopulation(id INTEGER PRIMARY KEY, Country TEXT, Date TEXT, country_id REFERENCES CountriesGenderCases(id), MalePop INTEGER, FemalePop INTEGER, TotalPop INTEGER);'''
-    # c.execute(query)
 
     query = '''CREATE TABLE IF NOT EXISTS USA(id INTEGER PRIMARY KEY, date TEXT, Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);'''
     c.execute(query)
@@ -40,7 +37,7 @@ def create_databases():
     query = '''CREATE TABLE IF NOT EXISTS CountriesAgeSex(id INTEGER PRIMARY KEY, Date TEXT, Country TEXT, country_id REFERENCES CountriesGender(id), AgeGroup TEXT, FemaleDeaths INTEGER, MaleDeaths INTEGER);'''
     c.execute(query)
 
-    print("Databases created!")
+    print("Tables created!")
 
 
 def retrieve_data(url):
@@ -226,7 +223,6 @@ def save_usa_gender_data():
     conn.close()
 
 
-# work in progress
 def save_usa_state_gender_data():
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -269,7 +265,8 @@ def save_usa_state_gender_data():
                 if 'pneumonia_deaths' not in state:
                     state['pneumonia_deaths'] = ''
                 query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
-                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'], state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
+                c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
+                                  state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
         if count == 25:
             for state in states[25:50]:
                 state_id = state_ref[state['state']]
@@ -313,7 +310,8 @@ def save_usa_state_gender_data():
             for state in states[100:125]:
                 state_id = state_ref[state['state']]
                 date_id = date_ref[date]
-                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths', 'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
+                params = ['total_deaths', 'covid_19_deaths', 'pneumonia_deaths', 'influenza_deaths',
+                          'pneumonia_and_covid_19_deaths', 'pneumonia_influenza_or_covid']
                 for param in params:
                     if param not in state:
                         state[param] = ''
@@ -356,10 +354,9 @@ def save_usa_state_gender_data():
                 query = '''INSERT INTO USAStateGender(Date, State, state_id, date_id, Sex, AgeGroup, COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, PneumoniaAndCOVID19Deaths, PneumoniaInfluenzaORCOVID19Deaths, TotalDeaths) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                 c.execute(query, (date, state['state'], state_id, date_id, state['sex'], state['age_group_new'], state['covid_19_deaths'], state['total_deaths'],
                                   state['pneumonia_deaths'], state['influenza_deaths'], state['pneumonia_and_covid_19_deaths'], state['pneumonia_influenza_or_covid']))
-    
+
     conn.commit()
     conn.close()
-                
 
 
 def save_global_data():
