@@ -25,7 +25,7 @@ def create_databases():
     query = '''CREATE TABLE IF NOT EXISTS USA(id INTEGER PRIMARY KEY, date TEXT, Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);'''
     c.execute(query)
 
-    query = "CREATE TABLE IF NOT EXISTS States(id INTEGER PRIMARY KEY, date TEXT, State TEXT, date_id REFERENCES USA(id), Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);"
+    query = '''CREATE TABLE IF NOT EXISTS States(id INTEGER PRIMARY KEY, date TEXT, State TEXT, date_id REFERENCES USA(id), Confirmed INTEGER, Negative INTEGER, Deaths INTEGER, Recovered INTEGER);'''
     c.execute(query)
 
     query = '''CREATE TABLE IF NOT EXISTS USAGender (id INTEGER PRIMARY KEY, Date TEXT, State TEXT, Sex TEXT, AgeGroup TEXT, COVID19Deaths INTEGER, PneumoniaDeaths INTEGER, InfluenzaDeaths INTEGER, PneumoniaAndCOVID19Deaths INTEGER, PneumoniaInfluenzaORCOVID19Deaths INTEGER, TotalDeaths INTEGER);'''
@@ -41,11 +41,21 @@ def create_databases():
 
 
 def retrieve_data(url):
+    """retrieves data from API
+
+    Args:
+        url (string): the url for the API
+
+    Returns:
+        dictionary: JSON data as a dictionary
+    """
     res = requests.get(url)
     return json.loads(res.text)
 
 
 def save_usa_data():
+    """this function specifically saves USA COVID data into a single row table
+    """
     url = 'https://api.covidtracking.com/v1/us/current.json'
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -62,6 +72,8 @@ def save_usa_data():
 
 
 def save_usa_state_data():
+    """this function saves specific USA state COVID data into a multi-row table
+    """
     url = 'https://api.covidtracking.com/v1/states/current.json'
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -192,6 +204,8 @@ def save_usa_state_data():
 
 
 def save_usa_gender_data():
+    """this function populates gender COVID data for the entire United States along with comparisons to other illnesses
+    """
     conn = sqlite3.connect('covid.db')
     c = conn.cursor()
 
@@ -224,6 +238,8 @@ def save_usa_gender_data():
 
 
 def save_usa_state_gender_data():
+    """this function saves Gender COVID data for every individual US State as well as the territories
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -360,6 +376,8 @@ def save_usa_state_gender_data():
 
 
 def save_countries_age_gender():
+    """this function saves gender data on multiple countries around the world, in particular COVID deaths by country, and also the age groups of the deaths. Note that not every country has offered data on this
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -501,6 +519,8 @@ def save_countries_age_gender():
 
 
 def save_global_data():
+    """this function inserts current global COVID data in total
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -521,6 +541,9 @@ def save_global_data():
 
 
 def save_country_data():
+    """
+    this function saves current COVID data on individual countries that offer that data
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -591,6 +614,8 @@ def save_country_data():
 
 
 def save_countries_gender():
+    """this function saves saves general COVID gender deaths for every country, rather than age groups
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
     data = []

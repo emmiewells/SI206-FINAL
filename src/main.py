@@ -1,5 +1,5 @@
 import database
-
+import calculate
 
 def main():
     while True:
@@ -7,8 +7,9 @@ def main():
 
         print("1. Create database")
         print("2. Update database")
-        print("3. Delete rows")
-        print("4. Start over")
+        print("3. Calculate results")
+        print("4. Delete rows")
+        print("5. Start over")
         print("0. Quit program")
 
         choice = int(input())
@@ -50,12 +51,14 @@ def main():
             elif table == 7:
                 database.save_countries_age_gender()
         elif choice == 3:
+            calculate.main()
+        elif choice == 4:
             print("What table would you like to delete rows from?")
             table = input()
             print("To what rows do you want to remove?")
             rows = int(input())
             database.delete_rows(table, rows)
-        elif choice == 4:
+        elif choice == 5:
             print("Starting over...")
             database.start_over()
 
