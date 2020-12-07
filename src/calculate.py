@@ -1,6 +1,7 @@
 import sqlite3
 
 
+# a dummy test function for writing data to file
 def test():
     print("Hello, calculate!")
 
@@ -78,3 +79,10 @@ def calculate_global_data():
 
         file.write(
             f"The country with the highest COVID recovery count is {recovered_country}, with a total recovery count of {recovered}, accounting for {percentage_recovered}% of all recoveries in the world!\n\n")
+
+
+def calculate_gender_data():
+    calculate_global_data()
+    
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()

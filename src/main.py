@@ -52,7 +52,7 @@ def main():
                 database.save_countries_age_gender()
         elif choice == 3:
             print("Calculating")
-            calculate.calculate_global_data()
+            calculate.calculate_gender_data()
         elif choice == 4:
             print("What table would you like to delete rows from?")
             table = input()
