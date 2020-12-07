@@ -71,6 +71,7 @@ def calculate_global_data():
 
     # writing to file
     with open("covid.txt", "w") as file:
+        file.write("### Global COVID Calculations ###")
         file.write(
             f"The country with the highest COVID case count is {confirmed_country}, with a total case count of {confirmed}, accounting for about {percentage_confirmed}% of all cases in the world.\n\n")
 
@@ -83,6 +84,54 @@ def calculate_global_data():
 
 def calculate_gender_data():
     calculate_global_data()
-    
+
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
+
+
+def calculate_usa_data():
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+
+    # fetching data
+    query = '''SELECT MAX(States.Confirmed), MAX(States.Negative), MAX(States.Deaths), MAX(States.Recovered), USA.Confirmed, USA.Negative, USA.Deaths, USA.Recovered FROM States JOIN USA ON States.date_id = USA.id;'''
+    c.execute(query)
+    data = c.fetchone()
+
+    query = f'''SELECT State FROM States WHERE Confirmed = {data[0]};'''
+    c.execute(query)
+    confirmed_state = c.fetchone()[0]
+
+    query = f'''SELECT State FROM States WHERE Negative = {data[1]};'''
+    c.execute(query)
+    negative_state = c.fetchone()[0]
+
+    query = f'''SELECT State FROM States WHERE Deaths = {data[2]};'''
+    c.execute(query)
+    deaths_state = c.fetchone()[0]
+
+    query = f'''SELECT State FROM States WHERE Recovered = {data[3]};'''
+    c.execute(query)
+    recovered_state = c.fetchone()[0]
+
+    # percentage calculation
+    percentage_confirmed = int(round(data[0] / data[4], 2) * 100)
+    percentage_negative = int(round(data[1] / data[5], 2) * 100)
+    percentage_deaths = int(round(data[2] / data[6], 2) * 100)
+    percentage_recovered = int(round(data[3] / data[7], 2) * 100)
+
+    # format strings
+    confirmed = f'data[0]:,'
+    negative = f'data[1]:,'
+    deaths = f'data[2]:,'
+    recovered = f'data[3]:,'
+
+    # writing to file
+    with open("covid.txt", "a") as file:
+        file.write("### US State COVID Calculations ###\n\n")
+        file.write(
+            f"Out of all of the US States, the state with the highest COVID cases is {confirmed_state} with {confirmed} cases, which make up about {percentage_confirmed}% of all cases countrywide.\n\n")
+        file.write(
+            f"Thus far, the deadliest US state is {deaths_state} with {deaths} deaths, which account for {percentage_deaths}% of all deaths.\n\n")
+        file.write(
+            f"But on the lighter side, the state with the most amount of recoveries is {recovered_state} with {recovered} total recovered and {percentage_recovered}% of all recoveries!\n\n")
