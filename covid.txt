@@ -6,9 +6,9 @@ The country with the highest COVID recovery count is India, with a total recover
 
 ### US State COVID Calculations ###
 
-Out of all of the US States, the state with the highest COVID cases is California with data[0]:, cases, which make up about 9% of all cases countrywide.
+Out of all of the US States, the state with the highest COVID cases is California with 1,225,189 cases, which make up about 9% of all cases countrywide.
 
-Thus far, the deadliest US state is New York with data[2]:, deaths, which account for 10% of all deaths.
+Thus far, the deadliest US state is New York with 26,816 deaths, which account for 10% of all deaths.
 
-But on the lighter side, the state with the most amount of recoveries is Texas with data[3]:, total recovered and 19% of all recoveries!
+But on the lighter side, the state with the most amount of recoveries is Texas with 976,517 total recovered and 19% of all recoveries!
 

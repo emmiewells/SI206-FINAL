@@ -116,10 +116,10 @@ def calculate_usa_data():
     percentage_recovered = int(round(data[3] / data[7], 2) * 100)
 
     # format strings
-    confirmed = f'data[0]:,'
-    negative = f'data[1]:,'
-    deaths = f'data[2]:,'
-    recovered = f'data[3]:,'
+    confirmed = f'{data[0]:,}'
+    negative = f'{data[1]:,}'
+    deaths = f'{data[2]:,}'
+    recovered = f'{data[3]:,}'
 
     # writing to file
     with open("covid.txt", "a") as file:
@@ -142,7 +142,7 @@ def calculate_gender_data():
 
     print("Calculating gender data...")
     
-    query = '''SELECT TotalDeaths FROM CountriesGender;'''
+    query = '''SELECT TotalDeaths, Country FROM CountriesGender;'''
     c.execute(query)
     
     print(c.fetchall())
