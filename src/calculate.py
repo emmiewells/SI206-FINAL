@@ -143,8 +143,36 @@ def calculate_gender_data():
     print("Calculating gender data...")
     
     # finding countries with highest male counts and female counts
-    query = '''SELECT CountriesGender.Country, CountriesGender.MaleDeaths, CountriesGender.FemaleDeaths, CountriesGender.TotalDeaths, FROM CountriesGender;'''
+    query = '''SELECT Countries.Country, CountriesGender.MaleDeaths, CountriesGender.FemaleDeaths, CountriesGender.TotalDeaths FROM CountriesGender JOIN Countries ON Countries.id = CountriesGender.country_id;'''
     c.execute(query)
     
-    deaths = c.fetchall()
-    print([i[0] for i in deaths]) # useful for getting specific data
+    data = c.fetchall()
+    # get rid of empty data
+    # for i in data:
+    #     if i[1] == '':
+    #         data.remove(i)
+    
+    
+    # print(data)
+    countries = [i[0] for i in data]
+    male_deaths = [i[1] for i in data]
+    female_deaths = [i[2] for i in data]
+    total_deaths = [i[3] for i in data]
+    while '' in male_deaths:
+        male_deaths.remove('')
+        female_deaths.remove('')
+        total_deaths.remove('')
+    # print(male_deaths)
+    # print(female_deaths)
+    # print(total_deaths)
+    if '' in total_deaths:
+        total_deaths.remove('')
+        
+    total_deaths = sorted(total_deaths, reverse=True)
+    print(total_deaths)
+    
+    # query = f'''SELECT id, Country from CountriesGender WHERE TotalDeaths = {max_deaths};'''
+    # c.execute(query)
+    
+    # print(c.fetchone())
+    

@@ -28,7 +28,6 @@ def main():
                 print("2. USA State table")
                 print("3. Gender Countries table")
                 print("4. USA State Gender table")
-                print("7. To test")
                 print("0. Quit program")
 
                 table = int(input())
@@ -51,8 +50,6 @@ def main():
                     database.save_usa_gender_data()
                     database.save_usa_state_gender_data()
                     database.save_countries_age_gender()
-                elif table == 7:
-                    print("Testing functions here")
         elif choice == 3:
             print("Calculating")
             calculate.calculate_gender_data()
