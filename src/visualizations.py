@@ -1,4 +1,4 @@
-import plotly.graph_objects
+import plotly.graph_objects as go
 import plotly.express as px
 import json
 
@@ -6,6 +6,9 @@ import json
 def main():
 
     # create a bar chart displaying the comparision of male and females cases in the us.
+    sex=['Male','Female']
+    fig = go.Figure([go.Bar(x=sex, y=cases)])
+    fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
 
