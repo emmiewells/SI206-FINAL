@@ -74,7 +74,7 @@ def calculate_global_data():
     with open("covid.txt", "w") as file:
         file.write("### Global COVID Calculations ###")
         file.write(
-            f"\nThe country with the highest COVID case count is {confirmed_country}, with a total case count of {confirmed}, accounting for about {percentage_confirmed}% of all cases in the world.\n\n")
+            f"\nThe country with the highest COVID case count is {confirmed_country}, with a total case count of {confirmed}, accounting for about {percentage_confirmed}% of all cases in the world!\n\n")
 
         file.write(
             f"The country with the highest COVID death count is {deaths_country}, with a total death count of {deaths}, accounting for {percentage_death}% of all death.s\n\n")
