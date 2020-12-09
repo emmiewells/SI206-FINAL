@@ -10,15 +10,14 @@ def main():
     fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
+    death_causes_list = ['COVID19_Deaths', 'Pneumonia_Deaths', 'Influenza_Deaths']
+    amount_list = [240213, 242296, 6829]
+    fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)])
+    fig.show()
 
     # create a scatter plot of the age groups that have contracted covid-19.
 
-    pass
 
-# import plotly.graph_objects as go 
-# label_list = ['240213',  ]
-# value_list = [100, 200]
-# fig = go.Figure(data=[go.Pie(labels=label_list, values=value_list)])
-# fig.show()
+
 if __name__ == '__main__':
     main()
