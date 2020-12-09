@@ -5,8 +5,9 @@ import json
 def main():
 
     # create a bar chart displaying the comparision of male and females cases in the us.
-    sex=['Male','Female']
-    fig = go.Figure([go.Bar(x=sex, y=cases)])
+    sex =['Male','Female']
+    us_cases = [] #insert data from table
+    fig = go.Figure(data=[go.Bar(labels= sex, values = us_cases)])
     fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
@@ -16,6 +17,7 @@ def main():
     fig.show()
 
     # create a scatter plot of the age groups that have contracted covid-19.
+    #covid_ages = []
 
 
 
