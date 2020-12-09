@@ -1,4 +1,4 @@
-import plotly.graph_objects
+import plotly.graph_objects as go
 # import plotly.express as px
 # import json
 
