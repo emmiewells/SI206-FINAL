@@ -24,6 +24,7 @@ def test():
             file.write(f"The country is {i[1]}")
 
 
+# this makes calculations using the Countries and Global tables
 def calculate_global_data():
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -82,13 +83,7 @@ def calculate_global_data():
             f"The country with the highest COVID recovery count is {recovered_country}, with a total recovery count of {recovered}, accounting for {percentage_recovered}% of all recoveries in the world!\n\n")
 
 
-def calculate_gender_data():
-    calculate_global_data()
-
-    conn = sqlite3.connect("covid.db")
-    c = conn.cursor()
-
-
+# this will be used to calculate the States and USA tables
 def calculate_usa_data():
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
@@ -135,3 +130,14 @@ def calculate_usa_data():
             f"Thus far, the deadliest US state is {deaths_state} with {deaths} deaths, which account for {percentage_deaths}% of all deaths.\n\n")
         file.write(
             f"But on the lighter side, the state with the most amount of recoveries is {recovered_state} with {recovered} total recovered and {percentage_recovered}% of all recoveries!\n\n")
+
+
+# this will be used to make calculations using the some of the gender tables (TBD)
+def calculate_gender_data():
+    calculate_global_data()  # these will run within
+    calculate_usa_data()
+
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+
+    print("Calculating gender data...")
