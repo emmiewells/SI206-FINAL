@@ -142,7 +142,8 @@ def calculate_gender_data():
 
     print("Calculating gender data...")
     
-    query = '''SELECT TotalDeaths, Country FROM CountriesGender;'''
+    query = '''SELECT Country, MaleDeaths, FemaleDeaths, TotalDeaths,  FROM CountriesGender;'''
     c.execute(query)
     
-    print(c.fetchall())
+    deaths = c.fetchall()
+    print([i[0] for i in deaths]) # useful for getting specific data
