@@ -1,4 +1,4 @@
-The country with the highest COVID case count is United States of America, with a total case count of 13,721,304, accounting for about 21% of all cases in the world.
+### Global COVID Calculations ###The country with the highest COVID case count is United States of America, with a total case count of 13,721,304, accounting for about 21% of all cases in the world.
 
 The country with the highest COVID death count is United States of America, with a total death count of 270,642, accounting for 18% of all death.s
 

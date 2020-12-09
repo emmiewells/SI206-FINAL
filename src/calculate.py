@@ -141,3 +141,8 @@ def calculate_gender_data():
     c = conn.cursor()
 
     print("Calculating gender data...")
+    
+    query = '''SELECT TotalDeaths FROM CountriesGender;'''
+    c.execute(query)
+    
+    print(c.fetchall())

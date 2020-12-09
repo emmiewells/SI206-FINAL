@@ -657,6 +657,8 @@ def save_countries_gender():
         if count < 150:
             if count == 0:
                 for v in data[:25]:
+                    # if v['MaleCases'] == '' or v['FemaleCases'] == '' or v['TotalCases'] == '' or v['MaleDeaths'] == '' or v['FemaleDeaths'] == '' or v['TotalDeaths'] == '':
+                    #     pass
                     try:
                         country_id = ref[v['country']]
                     except KeyError as e:
