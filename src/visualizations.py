@@ -13,6 +13,10 @@ def main():
 
     pass
 
-
+# import plotly.graph_objects as go 
+# label_list = ['PneumoniaAndCOVID19Deaths', 'PneumoniaInfluenzaORCOVID19Deaths']
+# value_list = [100, 200]
+# fig = go.Figure(data=[go.Pie(labels=label_list, values=value_list)])
+# fig.show()
 if __name__ == '__main__':
     main()
