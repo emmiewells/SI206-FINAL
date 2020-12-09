@@ -7,14 +7,14 @@ def main():
 
     # create a bar chart displaying the comparision of male and females cases in the us.
 
-    # create a pie chart showing which pre-existing health conditions affected the amount of deaths.
+    # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
 
     # create a scatter plot of the age groups that have contracted covid-19.
 
     pass
 
 # import plotly.graph_objects as go 
-# label_list = ['PneumoniaAndCOVID19Deaths', 'PneumoniaInfluenzaORCOVID19Deaths']
+# label_list = ['240213',  ]
 # value_list = [100, 200]
 # fig = go.Figure(data=[go.Pie(labels=label_list, values=value_list)])
 # fig.show()
