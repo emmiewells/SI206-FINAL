@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 import plotly.graph_objects
 # import plotly.express as px
 # import json
-=======
-import plotly.graph_objects as go
-import json
->>>>>>> 0ef97e332d66566aeb7ec7d4e44a0824a5180f10
 
 
 # def main():
 
-<<<<<<< HEAD
 #     # create a bar chart displaying the comparision of male and females cases in the us.
 
 #     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
@@ -31,24 +25,3 @@ import json
 
 # if __name__ == '__main__':
 #     main()
-=======
-    # create a bar chart displaying the comparision of male and females cases in the us.
-    sex =['Male','Female']
-    us_cases = [] #insert data from table
-    fig = go.Figure(data=[go.Bar(labels= sex, values = us_cases)])
-    fig.show()
-
-    # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
-    death_causes_list = ['COVID19_Deaths', 'Pneumonia_Deaths', 'Influenza_Deaths']
-    amount_list = [240213, 242296, 6829]
-    fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)])
-    fig.show()
-
-    # create a scatter plot of the age groups that have contracted covid-19.
-    #covid_ages = []
-
-
-
-if __name__ == '__main__':
-    main()
->>>>>>> 0ef97e332d66566aeb7ec7d4e44a0824a5180f10
