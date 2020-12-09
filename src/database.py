@@ -748,6 +748,16 @@ def start_over():
 
     query = "DROP TABLE CountriesGender;"
     c.execute(query)
+    
+    query = "DROP TABLE CountriesAgeSex;"
+    c.execute(query)
+    
+    query = "DROP TABLE States;"
+    c.execute(query)
+    
+    query = "DROP TABLE USAStateGender;"
+    c.execute(query)
+    
 
     conn.commit()
     conn.close()

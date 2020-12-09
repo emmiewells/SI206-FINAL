@@ -143,7 +143,7 @@ def calculate_gender_data():
     print("Calculating gender data...")
     
     # finding countries with highest male counts and female counts
-    query = '''SELECT Country, MaleDeaths, FemaleDeaths, TotalDeaths,  FROM CountriesGender;'''
+    query = '''SELECT CountriesGender.Country, CountriesGender.MaleDeaths, CountriesGender.FemaleDeaths, CountriesGender.TotalDeaths, FROM CountriesGender;'''
     c.execute(query)
     
     deaths = c.fetchall()
