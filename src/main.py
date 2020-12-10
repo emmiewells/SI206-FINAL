@@ -1,5 +1,6 @@
 import database
 import calculate
+import visualizations
 
 def main():
     """this is the main function
@@ -10,8 +11,9 @@ def main():
         print("1. Create database")
         print("2. Update database")
         print("3. Calculate results")
-        print("4. Delete rows")
-        print("5. Start over")
+        print("4. Plot data")
+        print("5. Delete rows")
+        print("6. Start over")
         print("0. Quit program")
 
         choice = int(input())
@@ -56,12 +58,15 @@ def main():
             print("Calculating")
             calculate.calculate_countries_gender_data()
         elif choice == 4:
+            print("Plotting...")
+            visualizations.main()
+        elif choice == 5:
             print("What table would you like to delete rows from?")
             table = input()
             print("To what rows do you want to remove?")
             rows = int(input())
             database.delete_rows(table, rows)
-        elif choice == 5:
+        elif choice == 6:
             print("Starting over...")
             database.start_over()
 
