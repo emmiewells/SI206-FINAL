@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+# import plotly.express as px
 import sqlite3
 
 def main():
@@ -67,10 +68,17 @@ def main():
     female_deaths = [i[1] for i in data]
     male_deaths = [i[2] for i in data]
     deaths = [i for i in range(10000)]
-    fig = go.Figure(0)
-    fig.female(data=go.Scatter(x=age_groups,y=female_deaths))
+    
+    # fig = go.Figure(data=go.Scatter(x=age_groups,y=female_deaths))
+    
+    fig = go.Figure()
+    
+    fig.add_trace(go.Scatter(x=age_groups, y=female_deaths, mode='lines'))
+    fig.add_trace(go.Scatter(x=age_groups, y=male_deaths, mode='lines'))
+    
+    # fig = px.line(x=age_groups, y)
 
-    fig = go.Figure(data=go.Scatter(x=age_groups, y=male_deaths))
+    # fig.add_trace(data=go.Scatter(x=age_groups, y=male_deaths))
     fig.show()
 
 
