@@ -55,10 +55,9 @@ def main():
     
     fig.show()
 
+    #calculations-create a scatter plot of the age groups that have contracted covid-19 in the us:
+    #
 
-    
-    
-    #calculations-create a scatter plot of the age groups that have contracted covid-19 in the us.
 
 
 
