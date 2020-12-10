@@ -342,10 +342,26 @@ def calculate_countries_gender_data():
     
     # finding age groups
     query = f'''SELECT AgeGroup, FemaleDeaths, MaleDeaths FROM CountriesAgeSex WHERE Country = '{country_max_deaths}';'''
+    c.execute(query)
+    max_death_data = c.fetchall()
+    max_male = max(max_death_data, key=lambda x: x[1])
+    max_female = max(max_death_data, key=lambda x: x[2])
+    print(max_male)
+    print(max_female)
+    print(max_death_data)
+    
+    # query = f'''SELECT AgeGroup FROM CountriesAgeSex WHERE MaleDeaths = 1099;'''
+    # c.execute(query)
+    # male_age_group = c.fetchone()
+    # # print(male_age_group)
     
     
     with open("covid.txt", "a") as file:
         file.write("\n\n### Global Gender Data ###\n\n")
         file.write("Unfortunately, for a lot of countries, the gender distribution data is not provided. So take this data with a grain of salt.\n")
         file.write(f"In terms of gender data, the highest COVID count providing this data is {country_max_deaths}, besides the United States. There, men account for {male_percentage}% of all COVID deaths so far with females accounting for only {female_percentage}%. That's quite alarming.\n")
-        file.write(f"However, strangely enough, women make up the majority of the population at {female_pop_percentage}%, outnumbering men who make up only {male_pop_percentage}%")
+        file.write(f"However, strangely enough, women make up the majority of the population at {female_pop_percentage}%, outnumbering men who make up only {male_pop_percentage}%\n\n")
+        file.write(f"What is perhaps even more surprising, we looked at the age groups between men and women to see if there was a gender difference here.\n")
+        for i in max_death_data:
+            file.write(f"Age Group: {i[0]}, Female Deaths: {i[1]}, Male Deaths: {i[2]}\n")
+        file.write("The differences in death are quite shocking.")
