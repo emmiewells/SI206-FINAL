@@ -328,17 +328,18 @@ def calculate_countries_gender_data():
     female_percentage = int(round(male_female_deaths[1] / male_female_deaths[2], 2) * 100)
     
     print(female_percentage)
+    print(male_percentage)
     
     query = f'''SELECT MalePop, FemalePop, TotalPop FROM CountriesGender WHERE Country = '{country_max_deaths}';'''
     c.execute(query)
     pop_data = c.fetchone()
-    print(pop_data)
+    # print(pop_data)
     
     male_pop_percentage = int(round(pop_data[0] / pop_data[2], 2) * 100)
     female_pop_percentage = int(round(pop_data[1] / pop_data[2], 2) * 100)
     
-    print(male_pop_percentage)
-    print(female_pop_percentage)
+    # print(male_pop_percentage)
+    # print(female_pop_percentage)
     
     # finding age groups
     query = f'''SELECT AgeGroup, FemaleDeaths, MaleDeaths FROM CountriesAgeSex WHERE Country = '{country_max_deaths}';'''
@@ -346,9 +347,9 @@ def calculate_countries_gender_data():
     max_death_data = c.fetchall()
     max_male = max(max_death_data, key=lambda x: x[1])
     max_female = max(max_death_data, key=lambda x: x[2])
-    print(max_male)
-    print(max_female)
-    print(max_death_data)
+    # print(max_male)
+    # print(max_female)
+    # print(max_death_data)
     
     # query = f'''SELECT AgeGroup FROM CountriesAgeSex WHERE MaleDeaths = 1099;'''
     # c.execute(query)

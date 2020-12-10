@@ -665,7 +665,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
             if count == 22:
                 for v in data[25:50]:
                     try:
@@ -674,7 +674,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total_sum'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
             if count == 45:
                 for v in data[50:75]:
                     try:
@@ -683,7 +683,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total_sum'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
             if count == 65:
                 for v in data[75:100]:
                     try:
@@ -692,7 +692,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total_sum'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
             if count == 77:
                 for v in data[100:125]:
                     try:
@@ -701,7 +701,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total_sum'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
             if count == 95:
                 for v in data[125:150]:
                     try:
@@ -710,7 +710,7 @@ def save_countries_gender():
                         continue
                     query = '''INSERT INTO CountriesGender(Country, Date, country_id, MaleCases, FemaleCases, TotalCases, MaleDeaths, FemaleDeaths, TotalDeaths, MalePop, FemalePop, TotalPop) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'''
                     c.execute(query, (v['country'], v['date'], country_id,
-                                      v['cases_male'], v['cases_female'], v['cases_total'], v['deaths_male'], v['deaths_female'], v['deaths_total'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
+                                      v['cases_male'], v['cases_female'], v['cases_total_sum'], v['deaths_male'], v['deaths_female'], v['deaths_total_sum'], v['malepop2020'], v['femalepop2020'], v['totpop2020']))
     else:
         print("Waiting for Countries data to be filled!")
     conn.commit()
