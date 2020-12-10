@@ -55,10 +55,23 @@ def main():
     
     fig.show()
 
-    #calculations-create a scatter plot of the age groups that have contracted covid-19 in the us:
-    #
+    #calculations-create a line chart plot of the age groups that have contracted covid-19 in the us:
+    #y amount of deaths, x age groups and then two lines displaying sex
+   
 
+    query = '''SELECT AgeGroup, FemaleDeaths, MaleDeaths FROM CountriesAgeSex WHERE Country = 'Mexico';'''
+    c.execute(query)
 
+    data = c.fetchall()
+    age_groups = [i[0] for i in data]
+    female_deaths = [i[1] for i in data]
+    male_deaths = [i[2] for i in data]
+    deaths = [i for i in range(10000)]
+    fig = go.Figure(0)
+    fig.female(data=go.Scatter(x=age_groups,y=female_deaths))
+
+    fig = go.Figure(data=go.Scatter(x=age_groups, y=male_deaths))
+    fig.show()
 
 
 
