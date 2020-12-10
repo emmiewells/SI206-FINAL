@@ -142,15 +142,26 @@ def calculate_gender_data():
 
     print("Calculating gender data...")
     
+    # query = '''SELECT USAGender.Date, USAGender.State, USAGender.Sex, USAGender.AgeGroup, USAGender.COVID19Deaths, USAStateGender.State, USAStateGender.Sex, USAStateGender.AgeGroup, USAStateGender.COVID19Deaths FROM USAGender JOIN USAStateGender ON USAStateGender.date_id = USAGender.id;'''
+    
+    # c.execute(query)
+    
+    # data = c.fetchall()
+    
+    # dates = [i[0] for i in data]
+    # states = [i[1] for i in data]
+    # sex = [i[2] for i in data]
+    # print(sex)
+    
     # finding countries with highest male counts and female counts
     query = '''SELECT Countries.Country, CountriesGender.MaleDeaths, CountriesGender.FemaleDeaths, CountriesGender.TotalDeaths FROM CountriesGender JOIN Countries ON Countries.id = CountriesGender.country_id;'''
     c.execute(query)
     
     data = c.fetchall()
     # get rid of empty data
-    # for i in data:
-    #     if i[1] == '':
-    #         data.remove(i)
+    for i in data:
+        if i[1] == '':
+            data.remove(i)
     
     
     # print(data)
@@ -168,11 +179,22 @@ def calculate_gender_data():
     if '' in total_deaths:
         total_deaths.remove('')
         
-    total_deaths = sorted(total_deaths, reverse=True)
-    print(total_deaths)
+    male_deaths = sorted(male_deaths, reverse=True)
+    print(male_deaths)
     
-    # query = f'''SELECT id, Country from CountriesGender WHERE TotalDeaths = {max_deaths};'''
-    # c.execute(query)
+    query = f'''SELECT id, Country from CountriesGender WHERE MaleDeaths = {male_deaths[0]};'''
+    c.execute(query)
     
-    # print(c.fetchone())
+    male_death_country = c.fetchall()[0][1]
     
+    female_deaths = sorted(female_deaths, reverse=True)
+    print(female_deaths)
+
+    query = f'''SELECT id, Country from CountriesGender WHERE FemaleDeaths = {female_deaths[0]};'''
+    c.execute(query)
+
+    female_death_country = c.fetchall()
+    
+    # for men in mexico, men account for 
+    query = f'''SELECT TotalDeaths FROM CountriesGender WHERE Country = '{male_death_country}';'''
+    print(c.fetchall())
