@@ -208,7 +208,7 @@ def calculate_usa_data():
     # print(c.fetchall())
 
 
-def calculate_countries_gender_data():
+def calculate_usa_gender_data():
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
     
@@ -287,8 +287,65 @@ def calculate_countries_gender_data():
     
     with open("covid.txt", "a") as file:
         file.write("### USA Gender Data ###\n\n")
-        file.write(f"In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly {male_percentage}% of all deaths right now. Women only make up about {female_percentage}.\n")
+        file.write(f"In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly {male_percentage}% of all deaths right now. Women only make up about {female_percentage}%.\n")
         file.write(f"In terms of age group between the genders, the overall most vulnerable group to COVID are ages between {age_group_all}.\n")
         file.write(f"Men however typically die a bit younger with their most vulnerable age group of {age_group_male} taking the most amount of deaths while women are typically more vulnerable around {age_group_female}.\n")
         file.write(f"Furthermore, we decided to compare COVID deaths with deaths of other and similiar conditions that it is consistently compared to, for example Pneumonia and Influenza. For all of America, COVID19 and Pneumonia deaths are roughly equal and account for about {covid_compare}% of all deaths while the flu accounts for only about {influenza_compare}% of all *reported* related deaths thus far this year. Men tend to die from COVID {covid_compare2}% of the time compared to pneumonia and the flu while women tend to die from COVID {covid_compare3}% of the time.")
     
+
+def calculate_countries_gender_data():
+    conn = sqlite3.connect("covid.db")
+    c = conn.cursor()
+    
+    query = '''SELECT CountriesGender.Date, CountriesGender.Country, CountriesGender.MaleDeaths, CountriesGender.FemaleDeaths, CountriesGender.TotalDeaths, CountriesAgeSex.AgeGroup, CountriesAgeSex.FemaleDeaths, CountriesAgeSex.MaleDeaths FROM CountriesGender JOIN CountriesAgeSex ON CountriesGender.id = CountriesAgeSex.country_id;'''
+    c.execute(query)
+    
+    data = c.fetchall()
+    # print(data)
+    
+    date = [i[0] for i in data]
+    countries = [i[1] for i in data]
+    male_deaths = [i[2] for i in data]
+    female_deaths = [i[3] for i in data]
+    total_deaths = [i[4] for i in data]
+    
+    while '' in total_deaths:
+        total_deaths.remove('')
+        
+    max_death_count = sorted(total_deaths, reverse=True)[0]
+    print(max_death_count)
+    
+    query = f'''SELECT Country FROM CountriesGender WHERE TotalDeaths = {max_death_count};'''
+    c.execute(query)
+    country_max_deaths = c.fetchone()[0]
+    print(country_max_deaths)
+    
+    query = f'''SELECT MaleDeaths, FemaleDeaths, TotalDeaths FROM CountriesGender WHERE Country = '{country_max_deaths}';'''
+    c.execute(query)
+    male_female_deaths = c.fetchone()
+    
+    male_percentage = int(round(male_female_deaths[0] / male_female_deaths[2], 2) * 100)
+    female_percentage = int(round(male_female_deaths[1] / male_female_deaths[2], 2) * 100)
+    
+    print(female_percentage)
+    
+    query = f'''SELECT MalePop, FemalePop, TotalPop FROM CountriesGender WHERE Country = '{country_max_deaths}';'''
+    c.execute(query)
+    pop_data = c.fetchone()
+    print(pop_data)
+    
+    male_pop_percentage = int(round(pop_data[0] / pop_data[2], 2) * 100)
+    female_pop_percentage = int(round(pop_data[1] / pop_data[2], 2) * 100)
+    
+    print(male_pop_percentage)
+    print(female_pop_percentage)
+    
+    # finding age groups
+    query = f'''SELECT AgeGroup, FemaleDeaths, MaleDeaths FROM CountriesAgeSex WHERE Country = '{country_max_deaths}';'''
+    
+    
+    with open("covid.txt", "a") as file:
+        file.write("\n\n### Global Gender Data ###\n\n")
+        file.write("Unfortunately, for a lot of countries, the gender distribution data is not provided. So take this data with a grain of salt.\n")
+        file.write(f"In terms of gender data, the highest COVID count providing this data is {country_max_deaths}, besides the United States. There, men account for {male_percentage}% of all COVID deaths so far with females accounting for only {female_percentage}%. That's quite alarming.\n")
+        file.write(f"However, strangely enough, women make up the majority of the population at {female_pop_percentage}%, outnumbering men who make up only {male_pop_percentage}%")

@@ -15,7 +15,7 @@ But on the lighter side, the state with the most amount of recoveries is Texas w
 
 ### USA Gender Data ###
 
-In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly 54% of all deaths right now. Women only make up about 46.
+In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly 54% of all deaths right now. Women only make up about 46%%.
 In terms of age group between the genders, the overall most vulnerable group to COVID are ages between 85 years and over.
 Men however typically die a bit younger with their most vulnerable age group of 75-84 years taking the most amount of deaths while women are typically more vulnerable around 85 years and over.
 Furthermore, we decided to compare COVID deaths with deaths of other and similiar conditions that it is consistently compared to, for example Pneumonia and Influenza. For all of America, COVID19 and Pneumonia deaths are roughly equal and account for about 10% of all deaths while the flu accounts for only about 0.25% of all *reported* related deaths thus far this year. Men tend to die from COVID 10% of the time compared to pneumonia and the flu while women tend to die from COVID 9% of the time.
