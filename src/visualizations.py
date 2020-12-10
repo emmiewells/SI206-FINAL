@@ -1,22 +1,19 @@
 import plotly.graph_objects as go
 import sqlite3
-#colors = ['light blue', 'yellow', 'light green']
-#import json
-
 
 def main():
 
     # create a bar chart displaying the comparision of male and females deaths in the us.
     sex =['Male','Female']
     us_cases = [141640, 119883] #insert data from table
-    colors = ['olive', 'crimson']
+    colors = ['GreenYellow', 'MediumOrchid']
     fig = go.Figure(data=[go.Bar(x=sex, y=us_cases, marker_color=colors)])
     fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
     death_causes_list = ['COVID19_Deaths', 'Pneumonia_Deaths', 'Influenza_Deaths']
     amount_list = [261530, 257672, 6868]
-    colors = ['light blue', 'yellow', 'light green']
+    colors = ['light blue', 'yellow', 'DarkOrange']
     fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)]) #change colors
     fig.update_traces(hoverinfo='value', textinfo='label+percent', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
@@ -37,8 +34,9 @@ def main():
         x=[state for state in states], y =[death for death in deaths], 
         mode='markers',
         marker_size=[marker for marker in markers])
-        ])
-    fig.show()
+    ])
+        
+    fig.show() 
 
 
     
