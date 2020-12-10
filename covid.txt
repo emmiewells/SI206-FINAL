@@ -37,19 +37,19 @@ In terms of gender data, the highest COVID count providing this data is Mexico, 
 However, strangely enough, women make up the majority of the population at 51%, outnumbering men who make up only 49%
 
 What is perhaps even more surprising, we looked at the age groups between men and women to see if there was a gender difference here.
-Age Group: 0-4, Female Deaths: 95, Male Deaths: 102, Male Death Percentage: 52.0%, Female Death Percentahe: 48.0
-Age Group: 15-19, Female Deaths: 63, Male Deaths: 53, Male Death Percentage: 46.0%, Female Death Percentahe: 54.0
-Age Group: 20-24, Female Deaths: 156, Male Deaths: 232, Male Death Percentage: 60.0%, Female Death Percentahe: 40.0
-Age Group: 25-29, Female Deaths: 297, Male Deaths: 535, Male Death Percentage: 64.0%, Female Death Percentahe: 36.0
-Age Group: 30-34, Female Deaths: 528, Male Deaths: 1099, Male Death Percentage: 68.0%, Female Death Percentahe: 32.0
-Age Group: 35-39, Female Deaths: 777, Male Deaths: 1833, Male Death Percentage: 70.0%, Female Death Percentahe: 30.0
-Age Group: 40-44, Female Deaths: 1335, Male Deaths: 3108, Male Death Percentage: 70.0%, Female Death Percentahe: 30.0
-Age Group: 45-49, Female Deaths: 2330, Male Deaths: 5047, Male Death Percentage: 68.0%, Female Death Percentahe: 32.0
-Age Group: 50-54, Female Deaths: 3226, Male Deaths: 6604, Male Death Percentage: 67.0%, Female Death Percentahe: 33.0
-Age Group: 55-59, Female Deaths: 4497, Male Deaths: 8282, Male Death Percentage: 65.0%, Female Death Percentahe: 35.0
-Age Group: 60-64, Female Deaths: 5426, Male Deaths: 9031, Male Death Percentage: 62.0%, Female Death Percentahe: 38.0
-Age Group: 65-69, Female Deaths: 5491, Male Deaths: 9071, Male Death Percentage: 62.0%, Female Death Percentahe: 38.0
-Age Group: 70-74, Female Deaths: 4867, Male Deaths: 8027, Male Death Percentage: 62.0%, Female Death Percentahe: 38.0
-Age Group: 75-79, Female Deaths: 3858, Male Deaths: 6082, Male Death Percentage: 61.0%, Female Death Percentahe: 39.0
-Age Group: 80+, Female Deaths: 4782, Male Deaths: 7247, Male Death Percentage: 60.0%, Female Death Percentahe: 40.0
+Age Group: 0-4, Female Deaths: 95, Male Deaths: 102, Male Death Percentage: 52.0%, Female Death Percentage: 48.0
+Age Group: 15-19, Female Deaths: 63, Male Deaths: 53, Male Death Percentage: 46.0%, Female Death Percentage: 54.0
+Age Group: 20-24, Female Deaths: 156, Male Deaths: 232, Male Death Percentage: 60.0%, Female Death Percentage: 40.0
+Age Group: 25-29, Female Deaths: 297, Male Deaths: 535, Male Death Percentage: 64.0%, Female Death Percentage: 36.0
+Age Group: 30-34, Female Deaths: 528, Male Deaths: 1099, Male Death Percentage: 68.0%, Female Death Percentage: 32.0
+Age Group: 35-39, Female Deaths: 777, Male Deaths: 1833, Male Death Percentage: 70.0%, Female Death Percentage: 30.0
+Age Group: 40-44, Female Deaths: 1335, Male Deaths: 3108, Male Death Percentage: 70.0%, Female Death Percentghe: 30.0
+Age Group: 45-49, Female Deaths: 2330, Male Deaths: 5047, Male Death Percentage: 68.0%, Female Death Percentage: 32.0
+Age Group: 50-54, Female Deaths: 3226, Male Deaths: 6604, Male Death Percentage: 67.0%, Female Death Percentage: 33.0
+Age Group: 55-59, Female Deaths: 4497, Male Deaths: 8282, Male Death Percentage: 65.0%, Female Death Percentage: 35.0
+Age Group: 60-64, Female Deaths: 5426, Male Deaths: 9031, Male Death Percentage: 62.0%, Female Death Percentage: 38.0
+Age Group: 65-69, Female Deaths: 5491, Male Deaths: 9071, Male Death Percentage: 62.0%, Female Death Percentage: 38.0
+Age Group: 70-74, Female Deaths: 4867, Male Deaths: 8027, Male Death Percentage: 62.0%, Female Death Percentage: 38.0
+Age Group: 75-79, Female Deaths: 3858, Male Deaths: 6082, Male Death Percentage: 61.0%, Female Death Percentage: 39.0
+Age Group: 80+, Female Deaths: 4782, Male Deaths: 7247, Male Death Percentage: 60.0%, Female Death Percentage: 40.0
 The differences in death are quite shocking.
