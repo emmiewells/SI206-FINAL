@@ -219,55 +219,62 @@ def calculate_countries_gender_data():
     male_all_age = all_age_data[1]
     female_all_age = all_age_data[2]
     unknown_all_age = all_age_data[3]
-    print(all_age_data)
+    # print(all_age_data)
     
     # calculations of data
     male_percentage = int(round(male_all_age[0] / usa_all_age[0], 2) * 100)
     female_percentage = int(round(female_all_age[0] / usa_all_age[0], 2) * 100)
     unknown_percentage = int(round(unknown_all_age[0] / usa_all_age[0], 2) * 100)
     
-    print(male_percentage)
-    print(female_percentage)
-    print(unknown_percentage)
-    
-    # find between each gender which illness is more killer
+    # print(male_percentage)
+    # print(female_percentage)
+    # print(unknown_percentage)
     
     # finding age groups with each gender
     query = '''SELECT MAX(COVID19Deaths) FROM USAGender WHERE Sex = 'All Sexes' AND AgeGroup <> 'All Ages';'''
     c.execute(query)
     death_count_all = c.fetchone()[0]
-    print(death_count_all)
     
     query = f'''SELECT AgeGroup FROM USAGender WHERE COVID19Deaths = {death_count_all};'''
     c.execute(query)
     age_group_all = c.fetchone()[0]
-    print(age_group_all)
     
     # men
     query = '''SELECT MAX(COVID19Deaths) FROM USAGender WHERE Sex = 'Male' AND AgeGroup <> 'All Ages';'''
     c.execute(query)
     death_count_male = c.fetchone()[0]
-    print(death_count_male)
     
     query = f'''SELECT AgeGroup FROM USAGender WHERE COVID19Deaths = {death_count_male};'''
     c.execute(query)
     age_group_male = c.fetchone()[0]
-    print(age_group_male)
     
     # female
     query = '''SELECT MAX(COVID19Deaths) FROM USAGender WHERE Sex = 'Female' AND AgeGroup <> 'All Ages';'''
     c.execute(query)
     death_count_female = c.fetchone()[0]
-    print(death_count_female)
 
     query = f'''SELECT AgeGroup FROM USAGender WHERE COVID19Deaths = {death_count_female};'''
     c.execute(query)
     age_group_female = c.fetchone()[0]
-    print(age_group_female)
     
-    with open("covid.txt", "a") as file:
-        file.write("### USA Gender Data ###\n\n")
-        file.write(f"In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly {male_percentage}% of all deaths right now. Women only make up about {female_percentage}.\n")
-        file.write(f"In terms of age group between the genders, the overall most vulnerable group to COVID are ages between {age_group_all}.")
-        file.write(f"Men however typically die a bit younger with their most vulnerable age group of {age_group_male} taking the most amount of deaths while women are typically more vulnerable around {age_group_female}.")
+    # find between each gender which illness is more killer
+    query = '''SELECT COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, TotalDeaths FROM USAGender WHERE AgeGroup = 'All Ages';'''
+    c.execute(query)
+    compare = c.fetchall()
+    print(compare)
+    all_compare = compare[0]
+    male_compare = compare[1]
+    female_compare = compare[2]
+    unknown_compare = compare[3]
+    
+    # calculations...
+    covid_compare = int(round(all_compare[0] / all_compare[3], 2) * 100)
+    print(covid_compare)
+    
+    # with open("covid.txt", "a") as file:
+    #     file.write("### USA Gender Data ###\n\n")
+    #     file.write(f"In the US alone, men are dying at alarmingly higher rates than women, accounting for roughly {male_percentage}% of all deaths right now. Women only make up about {female_percentage}.\n")
+    #     file.write(f"In terms of age group between the genders, the overall most vulnerable group to COVID are ages between {age_group_all}.\n")
+    #     file.write(f"Men however typically die a bit younger with their most vulnerable age group of {age_group_male} taking the most amount of deaths while women are typically more vulnerable around {age_group_female}.\n")
+    #     file.write(f"Furthermore, we decided to compare COVID deaths with deaths of other and similiar conditions that it is consistently compared to, for example Pneumonia and Influenza. ")
     
