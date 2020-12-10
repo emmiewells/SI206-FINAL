@@ -365,7 +365,7 @@ def calculate_countries_gender_data():
         file.write(f"What is perhaps even more surprising, we looked at the age groups between men and women to see if there was a gender difference here.\n")
         for i in max_death_data:
             try:
-                file.write(f"Age Group: {i[0]}, Female Deaths: {i[1]}, Male Deaths: {i[2]}, Male Death Percentage: {round(i[2] / (i[1] + i[2]), 2) * 100}%, Female Death Percentahe: {round(i[1] / (i[1] + i[2]), 2) * 100}%\n")
+                file.write(f"Age Group: {i[0]}, Female Deaths: {i[1]}, Male Deaths: {i[2]}, Male Death Percentage: {round(i[2] / (i[1] + i[2]), 2) * 100}%, Female Death Percentage: {round(i[1] / (i[1] + i[2]), 2) * 100}%\n")
             except ZeroDivisionError as e:
                 continue
         file.write("The differences in death are quite shocking.")
