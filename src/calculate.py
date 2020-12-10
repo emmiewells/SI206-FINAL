@@ -142,8 +142,11 @@ def calculate_gender_data():
 
     print("Calculating gender data...")
     
-    # query = '''SELECT USAGender.Date, USAGender.State, USAGender.Sex, USAGender.AgeGroup, USAGender.COVID19Deaths, USAStateGender.State, USAStateGender.Sex, USAStateGender.AgeGroup, USAStateGender.COVID19Deaths FROM USAGender JOIN USAStateGender ON USAStateGender.date_id = USAGender.id;'''
     
+    
+    
+    
+    # query = '''SELECT USAGender.Date, USAGender.State, USAGender.Sex, USAGender.AgeGroup, USAGender.COVID19Deaths, USAStateGender.State, USAStateGender.Sex, USAStateGender.AgeGroup, USAStateGender.COVID19Deaths FROM USAGender JOIN USAStateGender ON USAStateGender.date_id = USAGender.id;'''
     # c.execute(query)
     
     # data = c.fetchall()
