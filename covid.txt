@@ -23,7 +23,7 @@ Furthermore, we decided to compare COVID deaths with deaths of other and similia
 ### Global Gender Data ###
 
 Unfortunately, for a lot of countries, the gender distribution data is not provided. So take this data with a grain of salt.
-In terms of gender data, the highest COVID count providing this data is Mexico, besides the United States. There, men account for 74% of all COVID deaths so far with females accounting for only 26160%. That's quite alarming.
+In terms of gender data, the highest COVID count providing this data is Mexico, besides the United States. There, men account for 74% of all COVID deaths so far with females accounting for only 42%. That's quite alarming.
 However, strangely enough, women make up the majority of the population at 51%, outnumbering men who make up only 49%
 
 What is perhaps even more surprising, we looked at the age groups between men and women to see if there was a gender difference here.
