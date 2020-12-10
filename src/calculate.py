@@ -31,6 +31,8 @@ import sqlite3
 
 # this makes calculations using the Countries and Global tables
 def calculate_global_data():
+    """this in general calculates global data
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -90,6 +92,8 @@ def calculate_global_data():
 
 # # this will be used to calculate the States and USA tables
 def calculate_usa_data():
+    """this calculates general COVID data in the US
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
 
@@ -209,6 +213,8 @@ def calculate_usa_data():
 
 
 def calculate_usa_gender_data():
+    """this calculates the gender distribution of COVID deaths in the US.
+    """
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
     
@@ -294,6 +300,10 @@ def calculate_usa_gender_data():
     
 
 def calculate_countries_gender_data():
+    calculate_global_data()
+    calculate_usa_data()
+    calculate_usa_gender_data()
+    
     conn = sqlite3.connect("covid.db")
     c = conn.cursor()
     

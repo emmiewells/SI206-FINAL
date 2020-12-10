@@ -2,6 +2,8 @@ import database
 import calculate
 
 def main():
+    """this is the main function
+    """
     while True:
         print("Hello. What would you like to do?")
 
