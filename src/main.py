@@ -43,7 +43,7 @@ def main():
                     print("Please do this 3 times")
                     database.save_usa_state_data()
                 elif table == 3:
-                    print("Please do this at *least* 4 times and at max 6 times")
+                    print("Please do this at *least* 14 times and at max 20 times")
                     print("Please wait...")
                     database.save_country_data()
                     database.save_countries_gender()
