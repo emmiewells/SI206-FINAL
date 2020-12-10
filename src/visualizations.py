@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
-# import plotly.express as px
-# import json
+#colors = ['light blue', 'yellow', 'light green']
+#import json
 
 
 def main():
@@ -8,13 +8,17 @@ def main():
     # create a bar chart displaying the comparision of male and females cases in the us.
     sex =['Male','Female']
     us_cases = [141640, 119883] #insert data from table
-    fig = go.Figure(data=[go.Bar(x=sex, y=us_cases)])
+    colors = ['olive', 'crimson']
+    fig = go.Figure(data=[go.Bar(x=sex, y=us_cases, marker_color=colors)])
     fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
     death_causes_list = ['COVID19_Deaths', 'Pneumonia_Deaths', 'Influenza_Deaths']
-    amount_list = [240213, 242296, 6829]
+    amount_list = [261530, 257672, 6868]
+    colors = ['light blue', 'yellow', 'light green']
     fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)]) #change colors
+    fig.update_traces(hoverinfo='value', textinfo='label+percent', textfont_size=30,
+                  marker=dict(colors=colors, line=dict(color='#000000', width=2)))
     fig.show()
 
     # create a scatter plot of the age groups that have contracted covid-19 in the us .
@@ -22,7 +26,7 @@ def main():
 
 
 
-    
+
     #covid_ages = []
     #new calculations graph
     #percentage of women died of covid vs men
