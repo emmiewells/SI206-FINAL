@@ -1,11 +1,12 @@
 import plotly.graph_objects as go
+import sqlite3
 #colors = ['light blue', 'yellow', 'light green']
 #import json
 
 
 def main():
 
-    # create a bar chart displaying the comparision of male and females cases in the us.
+    # create a bar chart displaying the comparision of male and females deaths in the us.
     sex =['Male','Female']
     us_cases = [141640, 119883] #insert data from table
     colors = ['olive', 'crimson']
@@ -21,11 +22,28 @@ def main():
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
     fig.show()
 
-    # 
+    #create bubble chart for US states correlation to cases/deaths?
+    conn=sqlite3.connect('covid.db')
+    c= conn.cursor()
+    query='SELECT State, Deaths FROM States'
+    c.execute(query)
+    x= c.fetchall()
+    print(x)
+    states = [i[0] for i in x]
+    deaths = [i[1] for i in x]
+    markers = [i for i in range(50,0,-1)]
+    print(states)
+    fig = go.Figure(data=[go.Scatter(
+        x=[state for state in states], y =[death for death in deaths], 
+        mode='markers',
+        marker_size=[marker for marker in markers])
+        ])
+    fig.show()
 
 
-
-    #create a scatter plot of the age groups that have contracted covid-19 in the us.
+    
+    
+    #calculations-create a scatter plot of the age groups that have contracted covid-19 in the us.
 
 
 
