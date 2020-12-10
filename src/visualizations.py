@@ -21,7 +21,11 @@ def main():
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
     fig.show()
 
-    # create a scatter plot of the age groups that have contracted covid-19 in the us .
+    # 
+
+
+
+    #create a scatter plot of the age groups that have contracted covid-19 in the us.
 
 
 
@@ -39,8 +43,6 @@ def main():
 
     #us state table, which state was the deadliest for men, for women
     #which sex is most likely to die in __ state 
-
-
 
     #countries gender table, highest death for men vs women 
 
