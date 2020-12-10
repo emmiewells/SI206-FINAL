@@ -7,7 +7,7 @@ def main():
 
     # create a bar chart displaying the comparision of male and females cases in the us.
     sex =['Male','Female']
-    us_cases = [130005, 110202] #insert data from table
+    us_cases = [141640, 119883] #insert data from table
     fig = go.Figure(data=[go.Bar(x=sex, y=us_cases)])
     fig.show()
 
@@ -18,10 +18,27 @@ def main():
     fig.show()
 
     # create a scatter plot of the age groups that have contracted covid-19 in the us .
+
+
+
+
+    
     #covid_ages = []
+    #new calculations graph
+    #percentage of women died of covid vs men
+    #deadliest age group
+
+    #for all sexes, how many die of covid,influenza, pneumonia
+    #women, how many die of covid,influenza, pneumonia
+    #men, how many die of covid,influenza, pneumonia
+    #bar plot for all sexes showing covid deaths for each age group, heigh of bar is coivd 19 deaths
+
+    #us state table, which state was the deadliest for men, for women
+    #which sex is most likely to die in __ state 
 
 
 
+    #countries gender table, highest death for men vs women 
 
 if __name__ == '__main__':
     main()
