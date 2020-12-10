@@ -28,7 +28,7 @@ def main():
     print(x)
     states = [i[0] for i in x]
     deaths = [i[1] for i in x]
-    markers = [i for i in range(50,0,-1)]
+    markers = [i for i in range(56,0,-1)]
     print(states)
     fig = go.Figure(data=[go.Scatter(
         x=[state for state in states], y =[death for death in deaths], 
@@ -37,6 +37,23 @@ def main():
     ])
         
     fig.show() 
+    
+    # bubble chart showing global COVID data by country
+    query = 'SELECT Country, TotalDeaths FROM Countries'
+    c.execute(query)
+    x = c.fetchall()
+    print(x)
+    countries = [i[0] for i in x]
+    deaths = [i[1] for i in x]
+    markers = [i for i in range(150, 0, -1)]
+    print(states)
+    fig = go.Figure(data=[go.Scatter(
+        x=countries, y=deaths,
+        mode='markers',
+        marker_size=[marker for marker in markers])
+    ])
+    
+    fig.show()
 
 
     
