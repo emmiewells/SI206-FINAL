@@ -19,7 +19,7 @@ def main():
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
     fig.show()
 
-    #create bubble chart for US states correlation to cases/deaths?
+    #create bubble chart for US states correlation to deaths
     conn=sqlite3.connect('covid.db')
     c= conn.cursor()
     query='SELECT State, Deaths FROM States'
