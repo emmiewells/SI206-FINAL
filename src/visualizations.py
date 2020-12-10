@@ -3,6 +3,8 @@ import plotly.graph_objects as go
 import sqlite3
 
 def main():
+    """this will generate visualizations of the data we fetched from the database
+    """
 
     # create a bar chart displaying the comparision of male and females deaths in the us.
     sex =['Male','Female']
