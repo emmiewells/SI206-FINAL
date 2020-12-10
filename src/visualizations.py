@@ -9,6 +9,8 @@ def main():
     us_cases = [141640, 119883] #insert data from table
     colors = ['GreenYellow', 'MediumOrchid']
     fig = go.Figure(data=[go.Bar(x=sex, y=us_cases, marker_color=colors)])
+    title_str = "Male and Female COVID-19 Cases in the US"
+    fig.update_layout(title = title_str)
     fig.show()
 
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
@@ -16,8 +18,10 @@ def main():
     amount_list = [261530, 257672, 6868]
     colors = ['DarkOrange', 'yellow', 'DeepPink']
     fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)]) #change colors
+    title_str = "Pre-existing health conditions and COVID-19 Deaths"
     fig.update_traces(hoverinfo='value', textinfo='label+percent', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
+    fig.update_layout(title = title_str)
     fig.show()
 
     #create bubble chart for US states correlation to deaths
@@ -36,7 +40,8 @@ def main():
         mode='markers',
         marker_size=[marker for marker in markers])
     ])
-        
+    title_str = "Covid-19 Deaths by US State"
+    fig.update_layout(title = title_str)
     fig.show() 
     
     # bubble chart showing global COVID data by country
@@ -53,7 +58,8 @@ def main():
         mode='markers',
         marker_size=[marker for marker in markers])
     ])
-    
+    title_str = "Global COVID-19 data by Country"
+    fig.update_layout(title = title_str)
     fig.show()
 
     #calculations-create a line chart plot of the age groups that have contracted covid-19 in the us:
@@ -75,7 +81,8 @@ def main():
     
     fig.add_trace(go.Scatter(x=age_groups, y=female_deaths, mode='lines'))
     fig.add_trace(go.Scatter(x=age_groups, y=male_deaths, mode='lines'))
-    
+    title_str ="Male and Female COVID-19 Deaths by Age"
+    fig.update_layout(title = title_str)
     # fig = px.line(x=age_groups, y)
 
     # fig.add_trace(data=go.Scatter(x=age_groups, y=male_deaths))
