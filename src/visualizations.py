@@ -13,7 +13,7 @@ def main():
     # create a pie chart showing how COVID-19 deaths compares to pre-existing health conditions deaths.
     death_causes_list = ['COVID19_Deaths', 'Pneumonia_Deaths', 'Influenza_Deaths']
     amount_list = [261530, 257672, 6868]
-    colors = ['light blue', 'yellow', 'DarkOrange']
+    colors = ['DarkOrange', 'yellow', 'DeepPink']
     fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)]) #change colors
     fig.update_traces(hoverinfo='value', textinfo='label+percent', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
