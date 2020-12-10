@@ -81,7 +81,7 @@ def main():
     
     fig.add_trace(go.Scatter(x=age_groups, y=female_deaths, mode='lines'))
     fig.add_trace(go.Scatter(x=age_groups, y=male_deaths, mode='lines'))
-    title_str ="Male and Female COVID-19 Deaths by Age"
+    title_str ="Male and Female COVID-19 Deaths by Age for Mexico"
     fig.update_layout(title = title_str)
     # fig = px.line(x=age_groups, y)
 
