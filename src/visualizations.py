@@ -32,11 +32,11 @@ def main():
     query='SELECT State, Deaths FROM States'
     c.execute(query)
     x= c.fetchall()
-    print(x)
+    # print(x)
     states = [i[0] for i in x]
     deaths = [i[1] for i in x]
     markers = [i for i in range(56,0,-1)]
-    print(states)
+    # print(states)
     fig = go.Figure(data=[go.Scatter(
         x=[state for state in states], y =[death for death in deaths], 
         mode='markers',
@@ -50,11 +50,11 @@ def main():
     query = 'SELECT Country, TotalDeaths FROM Countries'
     c.execute(query)
     x = c.fetchall()
-    print(x)
+    # print(x)
     countries = [i[0] for i in x]
     deaths = [i[1] for i in x]
     markers = [i for i in range(150, 0, -1)]
-    print(states)
+    # print(states)
     fig = go.Figure(data=[go.Scatter(
         x=countries, y=deaths,
         mode='markers',
