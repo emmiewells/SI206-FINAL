@@ -4,10 +4,16 @@ import sqlite3
 def main():
     """this will generate visualizations of the data we fetched from the database
     """
-
     # create a bar chart displaying the comparision of male and females deaths in the us.
+    conn=sqlite3.connect('covid.db')
+    c= conn.cursor()
+    query = "SELECT COVID19Deaths FROM USAGender WHERE AgeGroup = 'All Ages' "
+    c.execute(query)
+    data = [i[0] for i in c.fetchall()]
+    data = data[1:3]
+    
     sex =['Male','Female']
-    us_cases = [141640, 119883] #insert data from table
+    us_cases = data #insert data from table
     colors = ['GreenYellow', 'MediumOrchid']
     fig = go.Figure(data=[go.Bar(x=sex, y=us_cases, marker_color=colors)])
     title_str = "Male and Female COVID-19 Cases in the US"
@@ -26,8 +32,6 @@ def main():
     fig.show()
 
     # create bubble chart for US states correlation to deaths
-    conn=sqlite3.connect('covid.db')
-    c= conn.cursor()
     query='SELECT State, Deaths FROM States'
     c.execute(query)
     x= c.fetchall()
