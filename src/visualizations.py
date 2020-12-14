@@ -19,7 +19,7 @@ def main():
     amount_list = [261530, 257672, 6868]
     colors = ['DarkOrange', 'yellow', 'DeepPink']
     fig = go.Figure(data=[go.Pie(labels=death_causes_list, values=amount_list)]) #change colors
-    title_str = "Pre-existing health conditions and COVID-19 Deaths"
+    title_str = "Other health conditions deaths compared to COVID-19 Deaths"
     fig.update_traces(hoverinfo='value', textinfo='label+percent', textfont_size=30,
                   marker=dict(colors=colors, line=dict(color='#000000', width=2)))
     fig.update_layout(title = title_str)
