@@ -1,5 +1,9 @@
 # SI 206 Final Project - COVID Gender API Project #
 
+## Link to GitHub Repo ###
+
+https://github.com/emmiewells/SI206-FINAL
+
 ## Our Purpose ##
 
 Ever wondered if there was ever a connection between COVID-19 deaths and gender? Or perhaps which age group is more vulnerable to COVID-19? These are questions that interested us and so we decided to pursue them in this project. We obtained data from several API sources to find out whether or not gender really plays a role in COVID deaths in both the United States and the rest of the world.
