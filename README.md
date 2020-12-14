@@ -58,6 +58,8 @@ We then went onto calculate the percentage of the second highest COVID country t
 
 The contents of the file are here:
 
+### covid.txt ###
+
  	### Global COVID Calculations ###
 	The country with the highest COVID case count is United States of America, with a total case count of 16,253,219, accounting for about 22% of all cases in the world!
 
