@@ -58,6 +58,8 @@ We then went onto calculate the percentage of the second highest COVID country t
 
 The contents of the file are here:
 
+### covid.txt ###
+
  	### Global COVID Calculations ###
 	The country with the highest COVID case count is United States of America, with a total case count of 16,253,219, accounting for about 22% of all cases in the world!
 
@@ -135,6 +137,14 @@ We then calculated the cases comparison between men and women deaths in the Unit
 And finally we went onto calculate the deaths in Mexico, the second most COVID country that offered gender data and determined that men were dying at even higher rates than women.
 
 ![pic3](img/mexico_death_data.png)
+
+An additional graph we did involving US State deaths from biggest to smallest using bubbles!
+
+![pic4](img/covid_state_deaths.png)
+
+However it's important to note that data from a different API has slightly different results on US States that we thought we'd include as well, in part to show multiple perspectives but also to understand how different COVID APIs are to each other.
+
+![pic5](img/states_covid.png)
 
 ## Documentation ##
 
