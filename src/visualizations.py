@@ -1,5 +1,4 @@
 import plotly.graph_objects as go
-# import plotly.express as px
 import sqlite3
 
 def main():
@@ -26,7 +25,7 @@ def main():
     fig.update_layout(title = title_str)
     fig.show()
 
-    #create bubble chart for US states correlation to deaths
+    # create bubble chart for US states correlation to deaths
     conn=sqlite3.connect('covid.db')
     c= conn.cursor()
     query='SELECT State, Deaths FROM States'
@@ -66,7 +65,6 @@ def main():
 
     #calculations-create a line chart plot of the age groups that have contracted covid-19 in the us:
     #y amount of deaths, x age groups and then two lines displaying sex
-   
 
     query = '''SELECT AgeGroup, FemaleDeaths, MaleDeaths FROM CountriesAgeSex WHERE Country = 'Mexico';'''
     c.execute(query)
@@ -77,7 +75,7 @@ def main():
     male_deaths = [i[2] for i in data]
     deaths = [i for i in range(10000)]
     
-    # fig = go.Figure(data=go.Scatter(x=age_groups,y=female_deaths))
+    fig = go.Figure(data=go.Scatter(x=age_groups,y=female_deaths))
     
     fig = go.Figure()
     
@@ -92,21 +90,25 @@ def main():
 
 
 
+    #Percentage by Deaths by Case per state, all sex and all ages (pie chart)
+    #Make list of COVID-19 deaths where the sex is all sexes/all ages and add up those states to get 100
 
-    #covid_ages = []
-    #new calculations graph
-    #percentage of women died of covid vs men
-    #deadliest age group
+    query = "SELECT COVID19Deaths, State FROM USAStateGender WHERE Sex = 'All Sexes'"
+    c.execute(query)
+    x = c.fetchall()
+    #print(x)
+    covid_deaths = [i[0] for i in x]
+    #print(covid_deaths)
+    deaths_sum = sum(covid_deaths)
+    print(deaths_sum)
+    us_states = [i[1] for i in x] 
+    print(us_states)
 
-    #for all sexes, how many die of covid,influenza, pneumonia
-    #women, how many die of covid,influenza, pneumonia
-    #men, how many die of covid,influenza, pneumonia
-    #bar plot for all sexes showing covid deaths for each age group, heigh of bar is coivd 19 deaths
+    labels = us_states
+    values = covid_deaths
+    fig =go.Figure(data=[go.Pie(labels=labels, values=values)])
+    fig.show()
 
-    #us state table, which state was the deadliest for men, for women
-    #which sex is most likely to die in __ state 
-
-    #countries gender table, highest death for men vs women 
 
 if __name__ == '__main__':
     main()
