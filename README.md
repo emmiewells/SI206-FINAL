@@ -136,6 +136,14 @@ And finally we went onto calculate the deaths in Mexico, the second most COVID c
 
 ![pic3](img/mexico_death_data.png)
 
+An additional graph we did involving US State deaths from biggest to smallest using bubbles!
+
+![pic4](img/covid_state_deaths.png)
+
+However it's important to note that data from a different API has slightly different results on US States that we thought we'd include as well, in part to show multiple perspectives but also to understand how different COVID APIs are to each other.
+
+![pic5](img/states_covid.png)
+
 ## Documentation ##
 
 This is the code documentation for every single function that we used in this project. 
