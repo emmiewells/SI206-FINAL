@@ -107,6 +107,8 @@ def main():
     labels = us_states
     values = covid_deaths
     fig =go.Figure(data=[go.Pie(labels=labels, values=values)])
+    title_str ="COVID-19 Deaths by State including all Sexes and Ages"
+    fig.update_layout(title = title_str)
     fig.show()
 
 
