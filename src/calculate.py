@@ -40,36 +40,36 @@ def calculate_global_data():
     c.execute(query)
     data = c.fetchone()
 
-    print(data[0])  # highest number of cases
+    # print(data[0])  # highest number of cases
 
     query = f'''SELECT Country FROM Countries WHERE TotalConfirmed = {data[0]};'''
     c.execute(query)
     confirmed_country = c.fetchone()[0]
-    print(confirmed_country)
+    # print(confirmed_country)
 
-    print(data[1])  # highest number of deaths
+    # print(data[1])  # highest number of deaths
 
     query = f'''SELECT Country FROM Countries WHERE TotalDeaths = {data[1]};'''
     c.execute(query)
     deaths_country = c.fetchone()[0]
-    print(deaths_country)
+    # print(deaths_country)
 
-    print(data[2])
+    # print(data[2])
 
     query = f'''SELECT Country FROM Countries WHERE TotalRecovered = {data[2]};'''
     c.execute(query)
     recovered_country = c.fetchone()[0]
-    print(recovered_country)
+    # print(recovered_country)
 
     # calculating data
     percentage_confirmed = int(round(data[0] / data[3], 2) * 100)
-    print(percentage_confirmed)
+    # print(percentage_confirmed)
 
     percentage_death = int(round(data[1] / data[4], 2) * 100)
-    print(percentage_death)
+    # print(percentage_death)
 
     percentage_recovered = int(round(data[2] / data[5], 2) * 100)
-    print(percentage_recovered)
+    # print(percentage_recovered)
 
     # formatting strings
     confirmed = f'{data[0]:,}'
@@ -269,7 +269,7 @@ def calculate_usa_gender_data():
     query = '''SELECT COVID19Deaths, PneumoniaDeaths, InfluenzaDeaths, TotalDeaths FROM USAGender WHERE AgeGroup = 'All Ages';'''
     c.execute(query)
     compare = c.fetchall()
-    print(compare)
+    # print(compare)
     all_compare = compare[0]
     male_compare = compare[1]
     female_compare = compare[2]
@@ -298,7 +298,7 @@ def calculate_usa_gender_data():
         file.write(
             f"Men however typically die a bit younger with their most vulnerable age group of {age_group_male} taking the most amount of deaths while women are typically more vulnerable around {age_group_female}.\n")
         file.write(
-            f"Furthermore, we decided to compare COVID deaths with deaths of other and similiar conditions that it is consistently compared to, for example Pneumonia and Influenza. For all of America, COVID19 and Pneumonia deaths are roughly equal and account for about {covid_compare}% of all deaths while the flu accounts for only about {influenza_compare}% of all *reported* related deaths thus far this year. Men tend to die from COVID {covid_compare2}% of the time compared to pneumonia and the flu while women tend to die from COVID {covid_compare3}% of the time.")
+            f"Furthermore, we decided to compare COVID deaths with deaths of other and similar conditions that it is consistently compared to, for example Pneumonia and Influenza. For all of America, COVID19 and Pneumonia deaths are roughly equal and account for about {covid_compare}% of all deaths while the flu accounts for only about {influenza_compare}% of all *reported* related deaths thus far this year. Men tend to die from COVID {covid_compare2}% of the time compared to pneumonia and the flu while women tend to die from COVID {covid_compare3}% of the time.")
 
 
 def calculate_countries_gender_data():
@@ -325,12 +325,12 @@ def calculate_countries_gender_data():
         total_deaths.remove('')
 
     max_death_count = sorted(total_deaths, reverse=True)[0]
-    print(max_death_count)
+    # print(max_death_count)
 
     query = f'''SELECT Country FROM CountriesGender WHERE TotalDeaths = {max_death_count};'''
     c.execute(query)
     country_max_deaths = c.fetchone()[0]
-    print(country_max_deaths)
+    # print(country_max_deaths)
 
     query = f'''SELECT MaleDeaths, FemaleDeaths, TotalDeaths FROM CountriesGender WHERE Country = '{country_max_deaths}';'''
     c.execute(query)
@@ -341,8 +341,8 @@ def calculate_countries_gender_data():
     female_percentage = int(
         round(male_female_deaths[1] / male_female_deaths[2], 2) * 100)
 
-    print(female_percentage)
-    print(male_percentage)
+    # print(female_percentage)
+    # print(male_percentage)
 
     query = f'''SELECT MalePop, FemalePop, TotalPop FROM CountriesGender WHERE Country = '{country_max_deaths}';'''
     c.execute(query)

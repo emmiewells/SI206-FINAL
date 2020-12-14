@@ -1,22 +1,27 @@
-import database
-import calculate
-import visualizations
+from src import database
+from src import calculate
+from src import visualizations
+import sqlite3
+
 
 def main():
     """this is the main function
     """
     while True:
+        choice = int()
         print("Hello. What would you like to do?")
 
         print("1. Create database")
         print("2. Update database")
         print("3. Calculate results")
         print("4. Plot data")
-        print("5. Delete rows")
-        print("6. Start over")
         print("0. Quit program")
 
-        choice = int(input())
+        try:
+            choice = int(input())
+        except ValueError as e:
+            print(f"Error: {e}  - please type an integer between 0-4!")
+            continue
 
         if choice == 0:
             print("Goodbye!")
@@ -27,25 +32,53 @@ def main():
             print()
         elif choice == 2:
             while True:
+                table = int()
                 print("Which table to update?")
-                print("1. Global table")
+                print("1. Global and USA table")
                 print("2. USA State table")
                 print("3. Gender Countries table")
-                print("4. USA State Gender table")
                 print("0. Quit program")
 
-                table = int(input())
+                conn = sqlite3.connect("covid.db")
+                c = conn.cursor()
+
+                try:
+                    table = int(input())
+                except ValueError as e:
+                    print(f"Error: {e}  - please type an integer between 0-4!")
+                    continue
 
                 if table == 0:
                     print("Goodbye!")
                     break
                 elif table == 1:
                     print("Please do this only once.")
-                    database.save_global_data()
-                    database.save_usa_data()
+
+                    query = '''SELECT * FROM Global;'''
+                    c.execute(query)
+                    count = len(c.fetchall())
+                    
+                    if count < 1:
+                        database.save_global_data()
+                        database.save_usa_data()
+                    else:
+                        print()
+                        print("Tables are full!")
+                        print()
+
                 elif table == 2:
                     print("Please do this 3 times")
-                    database.save_usa_state_data()
+
+                    query = '''SELECT * FROM States;'''
+                    c.execute(query)
+                    state_check = len(c.fetchall())
+                    if state_check == 56:
+                        print()
+                        print("Table at max capacity")
+                        print()
+                    else:
+                        database.save_usa_state_data()
+
                 elif table == 3:
                     print("Please do this at *least* 14 times and at max 20 times")
                     print("Please wait...")
@@ -60,15 +93,9 @@ def main():
         elif choice == 4:
             print("Plotting...")
             visualizations.main()
-        elif choice == 5:
-            print("What table would you like to delete rows from?")
-            table = input()
-            print("To what rows do you want to remove?")
-            rows = int(input())
-            database.delete_rows(table, rows)
-        elif choice == 6:
-            print("Starting over...")
-            database.start_over()
+        else:
+            print("Please type a number between 0-4!")
+            continue
 
 
 if __name__ == '__main__':
