@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def create_databases():
-    """this creates the table for the entire database
+    """this creates the tables for the entire database
     """
     print("Connecting to database...")
 

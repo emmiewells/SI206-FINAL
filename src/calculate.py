@@ -1,33 +1,6 @@
 import sqlite3
 
 
-# average amount of males that have died from covid
-# average amount of females that have died from covid
-
-
-# # a dummy test function for writing data to file
-# def test():
-#     print("Hello, calculate!")
-
-#     conn = sqlite3.connect("covid.db")
-#     c = conn.cursor()
-
-#     query = '''SELECT * FROM Global;'''
-#     c.execute(query)
-
-#     global_data = c.fetchone()
-
-#     query = '''SELECT * FROM Countries;'''
-#     c.execute(query)
-
-#     country_data = c.fetchall()
-#     print(country_data)
-
-#     with open("test.txt", "w") as file:
-#         for i in country_data:
-#             file.write(f"The country is {i[1]}")
-
-
 # this makes calculations using the Countries and Global tables
 def calculate_global_data():
     """this in general calculates global data
@@ -302,6 +275,8 @@ def calculate_usa_gender_data():
 
 
 def calculate_countries_gender_data():
+    """this generates the information on the country besides the US with the most COVID cases according to the data and finds out whether men or women die more
+    """
     calculate_global_data()
     calculate_usa_data()
     calculate_usa_gender_data()

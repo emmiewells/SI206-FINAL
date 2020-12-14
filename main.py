@@ -5,7 +5,7 @@ import sqlite3
 
 
 def main():
-    """this is the main function
+    """this is the main function for running everything in the project. Follow the instructions in the readme for how to accomplish this.
     """
     while True:
         choice = int()
