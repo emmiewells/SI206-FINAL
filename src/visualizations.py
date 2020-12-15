@@ -104,9 +104,9 @@ def main():
     covid_deaths = [i[0] for i in x]
     #print(covid_deaths)
     deaths_sum = sum(covid_deaths)
-    print(deaths_sum)
+    # print(deaths_sum)
     us_states = [i[1] for i in x] 
-    print(us_states)
+    # print(us_states)
 
     labels = us_states
     values = covid_deaths

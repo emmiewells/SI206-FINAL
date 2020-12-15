@@ -36,7 +36,7 @@ def main():
                 print("Which table to update?")
                 print("1. Global and USA table")
                 print("2. USA State table")
-                print("3. Gender Countries table")
+                print("3. Gender Countries tables")
                 print("0. Quit program")
 
                 conn = sqlite3.connect("covid.db")

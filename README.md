@@ -156,9 +156,9 @@ This is the code documentation for every single function that we used in this pr
 
 ### main.py ###
 
-def main():
-    """this is the main function for running everything in the project. Follow the instructions in the readme for how to accomplish this.
-    """
+	def main():
+		"""this is the main function for running everything in the project. Follow the instructions in the readme for how to accomplish this.
+		"""
 
 ### database.py ###
 
@@ -234,7 +234,9 @@ def main():
     """this will generate visualizations of the data we fetched from the database
     """
 
+## Conclusions ##
 
+According to the data, and as displayed by the visuals, it seems that far more men have died from COVID in the most infected areas compared to women. Although we must take this data with a grain of salt considering the amount of data not provided, we still see there is a clear separation of the genders. Could it be a biological difference? Or perhaps a social one? These are interesting questions that we should all consider, especially in these times. 
 
 
 
