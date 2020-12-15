@@ -31,6 +31,7 @@ def main():
             database.create_databases()
             print()
         elif choice == 2:
+            track = 0
             while True:
                 table = int()
                 print("Which table to update?")
@@ -80,7 +81,9 @@ def main():
                         database.save_usa_state_data()
 
                 elif table == 3:
+                    track += 1
                     print("Please do this at *least* 14 times and at max 20 times")
+                    print(f"You've already gone {track} times")
                     print("Please wait...")
                     database.save_country_data()
                     database.save_countries_gender()
